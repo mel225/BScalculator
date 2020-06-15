@@ -1,0 +1,197 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes,shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <title>バトルスコア計算ツール</title>
+    <link rel="stylesheet" href="./content.css">
+    <script>
+		var baseW = 768;
+		var iOSW = 0;
+		var ua = navigator.userAgent.toLowerCase();
+		var isiOS = (ua.indexOf("iphone") > -1) || (ua.indexOf("ipod") > -1) || (ua.indexOf("ipad") > -1);
+		if(isiOS){
+			iOSW = document.documentElement.clientWidth;
+		}
+		window.addEventListener("resize", updateMetaViewport, false);
+		window.addEventListener("orientationchange", updateMetaViewport, false);
+		var ev = document.createEvent("UIEvent");
+		ev.initEvent("resize", true, true)
+		window.dispatchEvent(ev);
+		function updateMetaViewport(){
+			var viewportContent;
+			var w = window.outerWidth;
+			if(isiOS){
+				w = iOSW;
+			}
+			if(w < baseW){
+				viewportContent = "width=480,initial-scale=" + w/480 + ",user-scalable=yes,shrink-to-fit=no";
+			}else{
+				viewportContent = "width=device-width,initial-scale=1.0,user-scalable=yes,shrink-to-fit=no";
+			}
+			document.querySelector("meta[name='viewport']").setAttribute("content", viewportContent);
+		}
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <table name="card">
+	<caption>カード情報</caption>
+	<thead>
+	  <tr>
+	    <th>カード名</th>
+	    <th><input type="textbox" name="card1" placeholder="カード1"></th>
+	    <th><input type="textbox" name="card2" placeholder="カード2"></th>
+	    <th><input type="textbox" name="card3" placeholder="カード3"></th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+	    <th>攻撃力(前半)</th>
+	    <td><input type="number" name="pow_first1"></td>
+	    <td><input type="number" name="pow_first2"></td>
+	    <td><input type="number" name="pow_first3"></td>
+	  </tr>
+	  <tr>
+	    <th>攻撃力(後半)</th>
+	    <td><input type="number" name="pow_boss1"></td>
+	    <td><input type="number" name="pow_boss2"></td>
+	    <td><input type="number" name="pow_boss3"></td>
+	  </tr>
+	  <tr>
+	    <th>属性</th>
+	    <td>
+	      <div>
+		<input type="radio" style="display:none;" id="attr_fire1" name="card1_attr" checked="">
+		<label for="attr_fire1"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_fire.png"></label>
+		<input type="radio" style="display:none;" id="attr_leaf1" name="card1_attr">
+		<label for="attr_leaf1"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_leaf.png"></label>
+		<input type="radio" style="display:none;" id="attr_aqua1" name="card1_attr">
+		<label for="attr_aqua1"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_aqua.png"></label>
+	      </div>
+	    </td>
+	    <td>
+	      <div>
+		<input type="radio" style="display:none;" id="attr_fire2" name="card2_attr" checked="">
+		<label for="attr_fire2"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_fire.png"></label>
+		<input type="radio" style="display:none;" id="attr_leaf2" name="card2_attr">
+		<label for="attr_leaf2"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_leaf.png"></label>
+		<input type="radio" style="display:none;" id="attr_aqua2" name="card2_attr">
+		<label for="attr_aqua2"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_aqua.png"></label>
+	      </div>
+	    </td>
+	    <td>
+	      <div>
+		<input type="radio" style="display:none;" id="attr_fire3" name="card3_attr" checked="">
+		<label for="attr_fire3"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_fire.png"></label>
+		<input type="radio" style="display:none;" id="attr_leaf3" name="card3_attr">
+		<label for="attr_leaf3"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_leaf.png"></label>
+		<input type="radio" style="display:none;" id="attr_aqua3" name="card3_attr">
+		<label for="attr_aqua3"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_aqua.png"></label>
+	      </div>
+	    </td>
+	  </tr>
+	</tbody>
+      </table>
+      <br />
+      <table name="music">
+	<caption>楽曲情報</caption>
+	<tbody>
+	  <tr>
+	    <th>曲名</th>
+	    <td><input type="textbox" name="music_name"><input type="button" value="選択"></td>
+	  </tr>
+	  <tr>
+	    <th>難易度</th>
+	    <td><select name="difficulty">
+	      <option value="1.0">BASIC</option>
+	      <option value="1.05">ADVANCED</option>
+	      <option value="1.15">EXPERT</option>
+	      <option value="1.2" selected>MASTER</option>
+	      <option value="1.25">LUNATIC</option>
+	    </select></td>
+	  </tr>
+	  <tr>
+	    <th>楽曲Lv.</th>
+	    <td><select name="music_level" class="">
+	      <option value="1">LEVEL 0</option>
+	      <option value="3" selected="">LEVEL 1</option>
+	      <option value="5">LEVEL 2</option>
+	      <option value="7">LEVEL 3</option>
+	      <option value="9">LEVEL 4</option>
+	      <option value="11">LEVEL 5</option>
+	      <option value="13">LEVEL 6</option>
+	      <option value="15">LEVEL 7</option>
+	      <option value="16">LEVEL 7+</option>
+	      <option value="17">LEVEL 8</option>
+	      <option value="18">LEVEL 8+</option>
+	      <option value="19">LEVEL 9</option>
+	      <option value="20">LEVEL 9+</option>
+	      <option value="21">LEVEL 10</option>
+	      <option value="22">LEVEL 10+</option>
+	      <option value="23">LEVEL 11</option>
+	      <option value="24">LEVEL 11+</option>
+	      <option value="25">LEVEL 12</option>
+	      <option value="26">LEVEL 12+</option>
+	      <option value="27">LEVEL 13</option>
+	      <option value="28">LEVEL 13+</option>
+	      <option value="29">LEVEL 14</option>
+	      <option value="30">LEVEL 14+</option>
+	    </select></td>
+	  </tr>
+	  <tr>
+	    <th>敵Lv.</th>
+	    <td><input type="number" name="boss_level"></td>
+	  </tr>
+	  <tr>
+	    <th>属性</th>
+	    <td>
+	      <div>
+		<input type="radio" style="display:none;" id="attr_fire" name="boss_attr" checked="">
+		<label for="attr_fire"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_fire.png"></label>
+		<input type="radio" style="display:none;" id="attr_leaf" name="boss_attr">
+		<label for="attr_leaf"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_leaf.png"></label>
+		<input type="radio" style="display:none;" id="attr_aqua" name="boss_attr">
+		<label for="attr_aqua"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_aqua.png"></label>
+	      </div>
+	    </td>
+	  </tr>
+	</tbody>
+      </table>
+      <br />
+      <table name="notes">
+	<caption>ノーツ情報</caption>
+	<thead>
+	  <tr>
+	    <th></th>
+	    <th>TAP</th>
+	    <th>HOLD</th>
+	    <th>SIDE TAP</th>
+	    <th>SIDE HOLD</th>
+	    <th>FLICK</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+	    <th>前半</th>
+	    <td><input type="number" name="tap_first"></td>
+	    <td><input type="number" name="hold_first"></td>
+	    <td><input type="number" name="side_tap_first"></td>
+	    <td><input type="number" name="side_hold_first"></td>
+	    <td><input type="number" name="flick_first"></td>
+	  </tr>
+	    <th>後半</th>
+	    <td><input type="number" name="tap_boss"></td>
+	    <td><input type="number" name="hold_boss"></td>
+	    <td><input type="number" name="side_tap_boss"></td>
+	    <td><input type="number" name="side_hold_boss"></td>
+	    <td><input type="number" name="flick_boss"></td>
+	  </tr>
+	</tbody>
+      </table>
+      <br />
+    </div>
+  </body>
+</html>
