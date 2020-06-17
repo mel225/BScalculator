@@ -1,8 +1,8 @@
-input[type=number] {
+input[type=number], input[type=text] {
   width: 70px;
 }
 
-input[type=number], input[type=textbox], select {
+input[type=number], input[type=textbox], input[type=text], select {
   background: #ffd;
 }
 
@@ -54,7 +54,7 @@ table caption {
 }
 
 table[name=card] input[type=textbox] {
-  width: 80px;
+  width: 120px;
 }
 
 td label {
