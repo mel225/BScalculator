@@ -9,7 +9,7 @@ function BScalc(){
       var attr_coef = getAttrCoef(getAttr(n), getAttr());
       var diff_coef = parseFloat(document.querySelector("select[name=difficulty]").value);
       var level_coef = 199 + parseInt(document.querySelector("input[name=boss_level]").value);
-      return parseFloat(new BigNumber(pow).times(attr_coef).times(diff_coef).times(level_coef).toPrecision());
+      return new BigNumber(pow).times(attr_coef).times(diff_coef).times(level_coef).toNumber();
     });
 
 
@@ -19,7 +19,7 @@ function BScalc(){
       var notes_num = document.querySelector(`input[name=${note}_${half}]`).value;
       var bs_notes_num = document.querySelector("input[name=bsnum_notes]").value;
       power.forEach(function(npow){
-        score += Math.ceil(parseFloat(new BigNumber(npow).times(getNoteCoef(note)).div(bs_notes_num).times(100).div(3).toPrecision()));
+        score += Math.ceil(new BigNumber(npow).times(getNoteCoef(note)).div(bs_notes_num).times(100).div(3).toNumber());
       });
       document.querySelector(`label[name=unibs_${note}_${half}]`).innerText = score;
       document.querySelector(`label[name=bs_${note}_${half}]`).innerText = score * notes_num;
@@ -28,6 +28,8 @@ function BScalc(){
 
       console.log(half, note, score, notes_num, bs_notes_num);
     });
+
+    console.log(half, power);
   });
   console.log(notes_score);
 
@@ -68,13 +70,13 @@ function getAttrCoef(user_attr, enemy_attr){
 }
 
 function bs_change(input){
-  var num = new BigNumber(0);
+  var num = 0;
   ["first", "boss"].forEach(function(half){
     ["tap", "hold", "sidetap", "sidehold", "flick"].forEach(function(note){
-      num.plus(new BigNumber(document.querySelector(`input[name=${note}_${half}]`).value).times(getNoteCoef(note)));
+      num = new BigNumber(document.querySelector(`input[name=${note}_${half}]`).value).times(getNoteCoef(note)).plus(num);
     });
   });
-  document.querySelector("input[name=bsnum_notes]").value = num.toPrecision();
+  document.querySelector("input[name=bsnum_notes]").value = num.toNumber();
 }
 
 function getNoteCoef(note_name){
