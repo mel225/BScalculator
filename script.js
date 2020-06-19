@@ -9,17 +9,17 @@ function BScalc(){
       var attr_coef = getAttrCoef(getAttr(n), getAttr());
       var diff_coef = parseFloat(document.querySelector("select[name=difficulty]").value);
       var level_coef = 199 + parseInt(document.querySelector("input[name=boss_level]").value);
-      return pow * attr_coef * diff_coef * level_coef;
+      return parseFloat(new BigNumber(pow).times(attr_coef).times(diff_coef).times(level_coef).toPrecision());
     });
 
 
     // ノーツ毎のBS値
     ["tap", "hold", "sidetap", "sidehold", "flick"].forEach(function(note){
       var score = 0;
-      var notes_num = parseFloat(document.querySelector(`input[name=${note}_${half}]`).value);
-      var bs_notes_num = parseFloat(document.querySelector("input[name=bsnum_notes]").value);
+      var notes_num = document.querySelector(`input[name=${note}_${half}]`).value;
+      var bs_notes_num = document.querySelector("input[name=bsnum_notes]").value;
       power.forEach(function(npow){
-        score += Math.ceil(npow * getNoteCoef(note) / bs_notes_num * 100 / 3);
+        score += Math.ceil(parseFloat(new BigNumber(npow).times(getNoteCoef(note)).div(bs_notes_num).times(100).div(3).toPrecision()));
       });
       document.querySelector(`label[name=unibs_${note}_${half}]`).innerText = score;
       document.querySelector(`label[name=bs_${note}_${half}]`).innerText = score * notes_num;
@@ -28,18 +28,16 @@ function BScalc(){
 
       console.log(half, note, score, notes_num, bs_notes_num);
     });
-
-    console.log(half, power);
   });
   console.log(notes_score);
 
-  var score = 0;
+  var battlescore = 0;
   // ノーツ毎のBS値の前後半の合計
   ["tap", "hold", "sidetap", "sidehold", "flick"].forEach(function(note){
     document.querySelector(`label[name=bs_${note}]`).innerText = notes_score[note];
-    score += notes_score[note];
+    battlescore += notes_score[note];
   });
-  document.querySelector("span[name=bs_value]").innerText = score;
+  document.querySelector("span[name=bs_value]").innerText = battlescore;
 }
 
 function getAttr(n){
@@ -70,13 +68,13 @@ function getAttrCoef(user_attr, enemy_attr){
 }
 
 function bs_change(input){
-  var num = 0;
+  var num = new BigNumber(0);
   ["first", "boss"].forEach(function(half){
     ["tap", "hold", "sidetap", "sidehold", "flick"].forEach(function(note){
-      num += parseFloat(document.querySelector(`input[name=${note}_${half}]`).value * getNoteCoef(note));
+      num.plus(new BigNumber(document.querySelector(`input[name=${note}_${half}]`).value).times(getNoteCoef(note)));
     });
   });
-  document.querySelector("input[name=bsnum_notes]").value = num;
+  document.querySelector("input[name=bsnum_notes]").value = num.toPrecision();
 }
 
 function getNoteCoef(note_name){
