@@ -12,19 +12,6 @@ input[type=number], input[type=textbox], input[type=text], select {
   background: #ffd;
 }
 
-th {
-  min-width: 60px;
-}
-
-td {
-  text-align: center;
-  border: 1px solid;
-}
-
-td div {
-  margin: 4px 0;
-}
-
 input[type=radio] {
   margin: 0;
 }
@@ -49,9 +36,11 @@ label img {
 table {
   left: 0;
   right: 0;
+  width: 475px;
   margin: 0 auto;
   padding: 1px;
   border: 1px solid;
+  border-collapse: collapse;
 }
 
 table caption {
@@ -60,7 +49,27 @@ table caption {
 }
 
 table[name=card] input[type=textbox] {
-  width: 120px;
+  width: 110px;
+  text-align: center;
+}
+
+tr {
+  border: 1px solid;
+}
+
+th {
+  min-width: 60px;
+  border: 1px solid;
+}
+
+td {
+  text-align: center;
+  border: 1px solid;
+  min-width: 60px;
+}
+
+td div {
+  margin: 4px 0;
 }
 
 td label {

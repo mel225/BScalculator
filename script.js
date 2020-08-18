@@ -42,6 +42,54 @@ function BScalc(){
   document.querySelector("span[name=bs_value]").innerText = battlescore;
 }
 
+function bs_change(input){
+  var num = 0;
+  ["first", "boss"].forEach(function(half){
+    ["tap", "hold", "sidetap", "sidehold", "flick"].forEach(function(note){
+      num = new BigNumber(document.querySelector(`input[name=${note}_${half}]`).value).times(getNoteCoef(note)).plus(num);
+    });
+  });
+  document.querySelector("input[name=bsnum_notes]").value = num.toNumber();
+}
+
+function pow_change(number){
+  var boost = {first: {fire: 0, leaf: 0, aqua: 0}, boss: {fire: 0, leaf: 0, aqua: 0}};
+  [1,2,3].forEach(function(num){
+    if(document.querySelector(`select[name=card_type${num}]`).value == "boost"){
+      var attr = getAttr(num);
+      boost.first[attr] += parseInt(document.querySelector(`input[name=plus_first${num}]`).value);
+      boost.boss[attr] += parseInt(document.querySelector(`input[name=plus_boss${num}]`).value);
+    }
+  });
+
+  ["fire", "leaf", "aqua"].forEach(function(attr){
+    document.querySelector(`input[name=boost_first_${attr}]`).value = boost.first[attr];
+    document.querySelector(`input[name=boost_boss_${attr}]`).value = boost.boss[attr];
+  });
+  
+  [1,2,3].forEach(function(num){
+    ["first", "boss"].forEach(function(half){
+      var plus = 100;
+      switch(document.querySelector(`select[name=card_type${num}]`).value){
+        case "boost":
+          break;
+        
+        case "other":
+          plus += parseInt(document.querySelector(`input[name=plus_${half}${num}]`).value);
+          break;
+
+        case "attack":
+          plus += parseInt(document.querySelector(`input[name=plus_${half}${num}]`).value);
+          plus += parseInt(document.querySelector(`input[name=boost_${half}_${getAttr(num)}]`).value);
+          break;
+      }
+      var pow = parseInt(document.querySelector(`input[name=pow${num}]`).value);
+      var p = '' + (pow * plus);
+      document.querySelector(`input[name=pow_${half}${num}]`).value = parseFloat(p.slice(0, -2) + "." + p.slice(-2));
+    });
+  });
+}
+
 function getAttr(n){
   if(!n) n="";
   var attr;
@@ -67,16 +115,6 @@ function getAttrCoef(user_attr, enemy_attr){
     case "aquaaqua": coef = 1; break;
   }
   return coef;
-}
-
-function bs_change(input){
-  var num = 0;
-  ["first", "boss"].forEach(function(half){
-    ["tap", "hold", "sidetap", "sidehold", "flick"].forEach(function(note){
-      num = new BigNumber(document.querySelector(`input[name=${note}_${half}]`).value).times(getNoteCoef(note)).plus(num);
-    });
-  });
-  document.querySelector("input[name=bsnum_notes]").value = num.toNumber();
 }
 
 function getNoteCoef(note_name){
