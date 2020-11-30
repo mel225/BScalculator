@@ -111,31 +111,31 @@ function updateMetaViewport(){
             <th>属性</th>
             <td>
               <div>
-                <input type="radio" style="display:none;" id="attr_fire1" name="card1_attr" onchange="pow_change()" value="fire" checked="">
+                <input type="radio" style="display:none;" id="attr_fire1" name="attr_card1" onchange="pow_change()" value="fire" checked="">
                 <label for="attr_fire1"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_fire.png"></label>
-                <input type="radio" style="display:none;" id="attr_leaf1" name="card1_attr" onchange="pow_change()" value="leaf">
+                <input type="radio" style="display:none;" id="attr_leaf1" name="attr_card1" onchange="pow_change()" value="leaf">
                 <label for="attr_leaf1"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_leaf.png"></label>
-                <input type="radio" style="display:none;" id="attr_aqua1" name="card1_attr" onchange="pow_change()" value="aqua">
+                <input type="radio" style="display:none;" id="attr_aqua1" name="attr_card1" onchange="pow_change()" value="aqua">
                 <label for="attr_aqua1"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_aqua.png"></label>
               </div>
             </td>
             <td>
               <div>
-                <input type="radio" style="display:none;" id="attr_fire2" name="card2_attr" onchange="pow_change()" value="fire" checked="">
+                <input type="radio" style="display:none;" id="attr_fire2" name="attr_card2" onchange="pow_change()" value="fire" checked="">
                 <label for="attr_fire2"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_fire.png"></label>
-                <input type="radio" style="display:none;" id="attr_leaf2" name="card2_attr" onchange="pow_change()" value="leaf">
+                <input type="radio" style="display:none;" id="attr_leaf2" name="attr_card2" onchange="pow_change()" value="leaf">
                 <label for="attr_leaf2"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_leaf.png"></label>
-                <input type="radio" style="display:none;" id="attr_aqua2" name="card2_attr" onchange="pow_change()" value="aqua">
+                <input type="radio" style="display:none;" id="attr_aqua2" name="attr_card2" onchange="pow_change()" value="aqua">
                 <label for="attr_aqua2"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_aqua.png"></label>
               </div>
             </td>
             <td>
               <div>
-                <input type="radio" style="display:none;" id="attr_fire3" name="card3_attr" onchange="pow_change()" value="fire" checked="">
+                <input type="radio" style="display:none;" id="attr_fire3" name="attr_card3" onchange="pow_change()" value="fire" checked="">
                 <label for="attr_fire3"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_fire.png"></label>
-                <input type="radio" style="display:none;" id="attr_leaf3" name="card3_attr" onchange="pow_change()" value="leaf">
+                <input type="radio" style="display:none;" id="attr_leaf3" name="attr_card3" onchange="pow_change()" value="leaf">
                 <label for="attr_leaf3"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_leaf.png"></label>
-                <input type="radio" style="display:none;" id="attr_aqua3" name="card3_attr" onchange="pow_change()" value="aqua">
+                <input type="radio" style="display:none;" id="attr_aqua3" name="attr_card3" onchange="pow_change()" value="aqua">
                 <label for="attr_aqua3"><img src="https://ongeki-net.com/ongeki-mobile/img/card_icon_aqua.png"></label>
               </div>
             </td>
@@ -164,7 +164,7 @@ function updateMetaViewport(){
             <th>楽曲Lv.</th>
             <td><select name="music_level" class="">
               <option value="1">LEVEL 0</option>
-              <option value="3" selected="">LEVEL 1</option>
+              <option value="3">LEVEL 1</option>
               <option value="5">LEVEL 2</option>
               <option value="7">LEVEL 3</option>
               <option value="9">LEVEL 4</option>
@@ -185,7 +185,7 @@ function updateMetaViewport(){
               <option value="27">LEVEL 13</option>
               <option value="28">LEVEL 13+</option>
               <option value="29">LEVEL 14</option>
-              <option value="30">LEVEL 14+</option>
+              <option value="30" selected="">LEVEL 14+</option>
             </select></td>
           </tr>
           <tr>
@@ -213,28 +213,28 @@ function updateMetaViewport(){
         <thead>
           <tr>
             <th></th>
-            <th>TAP</th>
             <th>HOLD</th>
-            <th>SIDE<br>TAP</th>
+            <th>TAP</th>
             <th>SIDE<br>HOLD</th>
+            <th>SIDE<br>TAP</th>
             <th>FLICK</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th>前半</th>
-            <td><input type="number" pattern="\d*" onchange="bs_change(this)" name="tap_first" value="0"><input type="hidden" name="bsnum_tap_first" value="0"></td>
             <td><input type="number" pattern="\d*" onchange="bs_change(this)" name="hold_first" value="0"><input type="hidden" name="bsnum_hold_first" value="0"></td>
-            <td><input type="number" pattern="\d*" onchange="bs_change(this)" name="sidetap_first" value="0"><input type="hidden" name="bsnum_sidetap_first" value="0"></td>
+            <td><input type="number" pattern="\d*" onchange="bs_change(this)" name="tap_first" value="0"><input type="hidden" name="bsnum_tap_first" value="0"></td>
             <td><input type="number" pattern="\d*" onchange="bs_change(this)" name="sidehold_first" value="0"><input type="hidden" name="bsnum_sidehold_first" value="0"></td>
+            <td><input type="number" pattern="\d*" onchange="bs_change(this)" name="sidetap_first" value="0"><input type="hidden" name="bsnum_sidetap_first" value="0"></td>
             <td><input type="number" pattern="\d*" onchange="bs_change(this)" name="flick_first" value="0"><input type="hidden" name="bsnum_flick_first" value="0"></td>
 	  </tr>
           <tr>
             <th>後半</th>
-            <td><input type="number" pattern="\d*" onchange="bs_change(this)" name="tap_boss" value="0"><input type="hidden" name="bsnum_tap_boss" value="0"></td>
             <td><input type="number" pattern="\d*" onchange="bs_change(this)" name="hold_boss" value="0"><input type="hidden" name="bsnum_hold_boss" value="0"></td>
-            <td><input type="number" pattern="\d*" onchange="bs_change(this)" name="sidetap_boss" value="0"><input type="hidden" name="bsnum_sidetap_boss" value="0"></td>
+            <td><input type="number" pattern="\d*" onchange="bs_change(this)" name="tap_boss" value="0"><input type="hidden" name="bsnum_tap_boss" value="0"></td>
             <td><input type="number" pattern="\d*" onchange="bs_change(this)" name="sidehold_boss" value="0"><input type="hidden" name="bsnum_sidehold_boss" value="0"></td>
+            <td><input type="number" pattern="\d*" onchange="bs_change(this)" name="sidetap_boss" value="0"><input type="hidden" name="bsnum_sidetap_boss" value="0"></td>
             <td><input type="number" pattern="\d*" onchange="bs_change(this)" name="flick_boss" value="0"><input type="hidden" name="bsnum_flick_boss" value="0"></td>
 	  </tr>
 	  <input type="hidden" name="bsnum_notes" value="0">
@@ -254,52 +254,52 @@ function updateMetaViewport(){
         <thead>
           <tr>
             <th></th>
-            <th>TAP</th>
             <th>HOLD</th>
-            <th>SIDE<br>TAP</th>
+            <th>TAP</th>
             <th>SIDE<br>HOLD</th>
+            <th>SIDE<br>TAP</th>
             <th>FLICK</th>
           </tr>
         </thead>
 	<tbody>
 	  <tr>
 	    <th>前半単価</th>
-	    <td><label name="unibs_tap_first"></label></td>
 	    <td><label name="unibs_hold_first"></label></td>
-	    <td><label name="unibs_sidetap_first"></label></td>
+	    <td><label name="unibs_tap_first"></label></td>
 	    <td><label name="unibs_sidehold_first"></label></td>
+	    <td><label name="unibs_sidetap_first"></label></td>
 	    <td><label name="unibs_flick_first"></label></td>
 	  </tr>
 	  <tr>
 	    <th>後半単価</th>
-	    <td><label name="unibs_tap_boss"></label></td>
 	    <td><label name="unibs_hold_boss"></label></td>
-	    <td><label name="unibs_sidetap_boss"></label></td>
+	    <td><label name="unibs_tap_boss"></label></td>
 	    <td><label name="unibs_sidehold_boss"></label></td>
+	    <td><label name="unibs_sidetap_boss"></label></td>
 	    <td><label name="unibs_flick_boss"></label></td>
 	  </tr>
 	  <tr>
 	    <th>BS前半</th>
-	    <td><label name="bs_tap_first"></label></td>
 	    <td><label name="bs_hold_first"></label></td>
-	    <td><label name="bs_sidetap_first"></label></td>
+	    <td><label name="bs_tap_first"></label></td>
 	    <td><label name="bs_sidehold_first"></label></td>
+	    <td><label name="bs_sidetap_first"></label></td>
 	    <td><label name="bs_flick_first"></label></td>
 	  </tr>
 	  <tr>
 	    <th>BS後半</th>
-	    <td><label name="bs_tap_boss"></label></td>
 	    <td><label name="bs_hold_boss"></label></td>
-	    <td><label name="bs_sidetap_boss"></label></td>
+	    <td><label name="bs_tap_boss"></label></td>
 	    <td><label name="bs_sidehold_boss"></label></td>
+	    <td><label name="bs_sidetap_boss"></label></td>
 	    <td><label name="bs_flick_boss"></label></td>
 	  </tr>
 	  <tr>
 	    <th>BS合計</th>
-	    <td><label name="bs_tap"></label></td>
 	    <td><label name="bs_hold"></label></td>
-	    <td><label name="bs_sidetap"></label></td>
+	    <td><label name="bs_tap"></label></td>
 	    <td><label name="bs_sidehold"></label></td>
+	    <td><label name="bs_sidetap"></label></td>
 	    <td><label name="bs_flick"></label></td>
 	  </tr>
         </tbody>
